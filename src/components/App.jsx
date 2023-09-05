@@ -1,24 +1,7 @@
 import { Component } from 'react';
 import Section from './Section/Section';
-import Categories from './Categories/Categories';
-import Statistic from './Statistic/Statistic';
-
-// export const App = () => {
-//   return (
-//     <div>
-//       <p>Please leave feedback</p>
-//       <div>
-//         <button type="button"></button>
-//         <button type="button"></button>
-//         <button type="button"></button>
-//       </div>
-//       <h3>Statistics</h3>
-//       <p>Good: </p>
-//       <p>Neutral: </p>
-//       <p>Bad: </p>
-//     </div>
-//   );
-// };
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Statistics from './Statistics/Statistics';
 
 export class App extends Component {
   state = {
@@ -27,36 +10,40 @@ export class App extends Component {
     bad: 0,
   };
 
-  counterValues = () => {
+  countTotalFeedback = () => {
     return Object.values(this.state).reduce((acc, value) => acc + value, 0);
   };
 
-  counterPositivePercentage = () => {
-    const sum = Object.values(this.state).reduce(
-      (acc, value) => acc + value,
-      0
-    );
-
-    const percentage = (this.state.good / sum) * 100;
-
+  countPositiveFeedbackPercentage = () => {
+    const sum = this.countTotalFeedback();
+    const percentage = Math.round((this.state.good / sum) * 100);
     return percentage;
   };
 
+  handleCategoriesFeedback = ({ target }) => {
+    console.dir(target.textContent);
+    this.setState(prev => ({
+      [target.textContent]: prev[target.textContent] + 1,
+    }));
+  };
+
   render() {
-    console.log(Object.values(this.state));
     return (
       <>
         <Section title="Please leave feedback">
-          <Categories categories={Object.keys(this.state)}></Categories>
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.handleCategoriesFeedback}
+          ></FeedbackOptions>
         </Section>
         <Section title="Statistics">
-          <Statistic
+          <Statistics
             good={this.state.good}
             neutral={this.state.neutral}
             bad={this.state.bad}
-            total={this.counterValues()}
-            positivePercentage={this.counterPositivePercentage()}
-          ></Statistic>
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          ></Statistics>
         </Section>
       </>
     );

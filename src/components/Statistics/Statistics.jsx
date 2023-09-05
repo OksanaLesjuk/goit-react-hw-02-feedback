@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-export default class Statistic extends Component {
+export default class Statistics extends Component {
   render() {
     const { good, neutral, bad, total, positivePercentage } = this.props;
     return (
