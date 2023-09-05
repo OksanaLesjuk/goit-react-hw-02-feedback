@@ -22,7 +22,6 @@ export class App extends Component {
   };
 
   handleCategoriesFeedback = ({ target }) => {
-    console.dir(target.textContent);
     this.setState(prev => ({
       [target.textContent]: prev[target.textContent] + 1,
     }));
@@ -37,8 +36,9 @@ export class App extends Component {
             onLeaveFeedback={this.handleCategoriesFeedback}
           ></FeedbackOptions>
         </Section>
-        {this.countTotalFeedback() ? (
-          <Section title="Statistics">
+
+        <Section title="Statistics">
+          {this.countTotalFeedback() ? (
             <Statistics
               good={this.state.good}
               neutral={this.state.neutral}
@@ -46,12 +46,10 @@ export class App extends Component {
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             ></Statistics>
-          </Section>
-        ) : (
-          <Section>
+          ) : (
             <Notification message="There is no feedback"></Notification>
-          </Section>
-        )}
+          )}
+        </Section>
       </>
     );
   }
