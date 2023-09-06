@@ -11,7 +11,7 @@ export default class Statistics extends Component {
         <li>Neutral: {neutral}</li>
         <li>Bad: {bad}</li>
         <li>Total: {total}</li>
-        <li>Positive feedback: {positivePercentage}%</li>
+        <li>Positive feedback: {positivePercentage} %</li>
       </StatisticsList>
     );
   }
