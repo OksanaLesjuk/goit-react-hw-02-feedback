@@ -2,7 +2,7 @@
   "name": "goit-react-hw-02-feedback",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://OksanaLesjuk.github.io/goit-react-hw-02-feedback/",
+  "homepage": "https://oksanalesjuk.github.io/goit-react-hw-02-feedback/",
   "dependencies": {
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.1",
